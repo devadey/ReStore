@@ -5,11 +5,16 @@
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class BasketEntityAdded : Migration
+    public partial class BasketDTOsAdded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "QuantityInStock",
+                table: "Products",
+                newName: "Quantity");
+
             migrationBuilder.CreateTable(
                 name: "Baskets",
                 columns: table => new
@@ -69,6 +74,11 @@ namespace API.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Baskets");
+
+            migrationBuilder.RenameColumn(
+                name: "Quantity",
+                table: "Products",
+                newName: "QuantityInStock");
         }
     }
 }

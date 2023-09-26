@@ -19,7 +19,7 @@ builder.Services.AddDbContext<StoreContext>(Options => {
 
 builder.Services.AddCors(options => 
 {
-    options.AddPolicy("AllowAll", b=> b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+    options.AddPolicy("AllowAll", b=> b.AllowAnyHeader().AllowCredentials().AllowAnyMethod().AllowAnyOrigin());
 });
 
 

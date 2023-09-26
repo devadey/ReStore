@@ -16,7 +16,7 @@ namespace API.Data
                 PictureUrl = "https://images.unsplash.com/photo-1694454081401-cef6ac439445?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
                 Brand = "Penguin Books",
                 Type = "Fiction",
-                QuantityInStock = 100,
+                Quantity = 100,
             },
             new Product
             {
@@ -26,7 +26,7 @@ namespace API.Data
                 PictureUrl = "https://plus.unsplash.com/premium_photo-1676047258590-8a8a2a583050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80",
                 Brand = "HarperCollins",
                 Type = "Fiction",
-                QuantityInStock = 85,
+                Quantity = 85,
             },
             new Product
             {
@@ -36,7 +36,7 @@ namespace API.Data
                 PictureUrl = "https://plus.unsplash.com/premium_photo-1676047258590-8a8a2a583050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80",
                 Brand = "Little, Brown and Company",
                 Type = "Fiction",
-                QuantityInStock = 75,
+                Quantity = 75,
             },
             new Product
             {
@@ -46,7 +46,7 @@ namespace API.Data
                 PictureUrl = "https://images.unsplash.com/photo-1694406129739-0851220bf8ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1871&q=80",
                 Brand = "Houghton Mifflin",
                 Type = "Fantasy",
-                QuantityInStock = 110,
+                Quantity = 110,
             },
             new Product
             {
@@ -56,7 +56,7 @@ namespace API.Data
                 PictureUrl = "https://plus.unsplash.com/premium_photo-1694412515981-f30c5beb7e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
                 Brand = "Penguin Books",
                 Type = "Fiction",
-                QuantityInStock = 95,
+                Quantity = 95,
             },
             new Product
             {
@@ -66,7 +66,7 @@ namespace API.Data
                 PictureUrl = "https://images.unsplash.com/photo-1694565586339-164e6bab5ce9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
                 Brand = "Bloomsbury Publishing",
                 Type = "Fantasy",
-                QuantityInStock = 120,
+                Quantity = 120,
             },
             new Product
             {
@@ -76,7 +76,7 @@ namespace API.Data
                 PictureUrl = "https://images.unsplash.com/photo-1694437435316-4776b59a77b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                 Brand = "Houghton Mifflin",
                 Type = "Fantasy",
-                QuantityInStock = 80,
+                Quantity = 80,
             },
             new Product
             {
@@ -86,7 +86,7 @@ namespace API.Data
                 PictureUrl = "https://images.unsplash.com/photo-1694683464468-303b8f3160a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
                 Brand = "Vintage Books",
                 Type = "Romance",
-                QuantityInStock = 65,
+                Quantity = 65,
             },
             new Product
             {
@@ -96,7 +96,7 @@ namespace API.Data
                 PictureUrl = "https://plus.unsplash.com/premium_photo-1692287214829-a36af38d7f49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
                 Brand = "Scholastic",
                 Type = "Science Fiction",
-                QuantityInStock = 95,
+                Quantity = 95,
             },
             new Product
             {
@@ -106,7 +106,7 @@ namespace API.Data
                 PictureUrl = "https://plus.unsplash.com/premium_photo-1692287214829-a36af38d7f49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
                 Brand = "Doubleday",
                 Type = "Mystery",
-                QuantityInStock = 70,
+                Quantity = 70,
             },
             };
             // foreach (var product in products){
