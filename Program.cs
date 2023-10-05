@@ -1,7 +1,10 @@
 using API.Data;
+using API.Entities;
 using API.MiddleWare;
+using API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,15 +18,18 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<StoreContext>(Options => {
     Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+    });
 
-builder.Services.AddCors(options => 
-{
-    options.AddPolicy("AllowAll", b=> b.AllowAnyHeader().AllowCredentials().AllowAnyMethod().AllowAnyOrigin());
-});
+builder.Services.AddIdentityCore<User>(opt => {opt.User.RequireUniqueEmail = true;})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<StoreContext>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+builder.Services.AddAuthorization();
+builder.Services.AddScoped<TokenService>();
 
-
-builder.Host.UseSerilog((context, logger) => logger.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
+builder.Host.UseSerilog((context, logger) => 
+    logger.WriteTo.Console().ReadFrom
+    .Configuration(context.Configuration));
 
 var app = builder.Build();
 
@@ -37,9 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors(opt => {opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins(); });
 
-app.UseCors("AllowAll");
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
@@ -47,12 +53,13 @@ app.MapControllers();
 
 var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
+var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
 try
 {
-    context.Database.Migrate();
-    DbInitializer.Initialize(context);
+    await context.Database.MigrateAsync();
+    await DbInitializer.Initialize(context, userManager);
 }
 catch (Exception ex)
 {

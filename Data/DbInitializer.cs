@@ -1,10 +1,33 @@
 using API.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(StoreContext context){
+        public static async Task Initialize(StoreContext context, UserManager<User> userManager)
+        {
+
+            if (!userManager.Users.Any())
+            {
+                var user = new User
+                {
+                    UserName = "bob",
+                    Email = "bob@test.com"
+                };
+                await userManager.CreateAsync(user, "Pa$$w0rd");
+                await userManager.AddToRoleAsync(user, "Member");
+
+                var admin = new User
+                {
+                    UserName = "admin",
+                    Email = "admin@test.com"
+                };
+                await userManager.CreateAsync(admin, "Pa$$w0rd");
+                await userManager.AddToRolesAsync(admin, new[] {"Member", "Admin"});
+            }
+
+
             if (context.Products.Any()) return;
 
             var products = new List<Product>{
@@ -34,7 +57,7 @@ namespace API.Data
                 Description = "The Catcher in the Rye is a novel by J.D. Salinger. It follows the experiences of Holden Caulfield, a disenchanted teenager in New York City, as he grapples with the challenges of growing up.",
                 Price = 1500,
                 PictureUrl = "https://plus.unsplash.com/premium_photo-1676047258590-8a8a2a583050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80",
-                Brand = "Little, Brown and Company",
+                Brand = "Little Brown and Company",
                 Type = "Fiction",
                 Quantity = 75,
             },
@@ -47,6 +70,36 @@ namespace API.Data
                 Brand = "Houghton Mifflin",
                 Type = "Fantasy",
                 Quantity = 110,
+            },
+            new Product
+            {
+                Name = "The Embarks",
+                Description = "Hobbit who embarks on an epic adventure with a peers of dwarves to reclaim their country from the dragon Smaug.",
+                Price = 1800,
+                PictureUrl = "https://images.unsplash.com/photo-1694406129739-0851220bf8ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1871&q=80",
+                Brand = "Rahab Light",
+                Type = "Scientific Fiction",
+                Quantity = 11,
+            },
+            new Product
+            {
+                Name = "The Hallan diary",
+                Description = "The Hobbit is a fantasy novel by J. Hallan witten with a group of immigrants from the USA.",
+                Price = 1800,
+                PictureUrl = "https://images.unsplash.com/photo-1694406129739-0851220bf8ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1871&q=80",
+                Brand = "Adams Toke",
+                Type = "Fantasy",
+                Quantity = 50,
+            },
+            new Product
+            {
+                Name = "Tickler Sower",
+                Description = "This defines the attibutes of a group of young lads that are playing the deadly game of entering a zoo with unleashed Lions.",
+                Price = 1800,
+                PictureUrl = "https://images.unsplash.com/photo-1694406129739-0851220bf8ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1871&q=80",
+                Brand = "Kendrick Hitler",
+                Type = "Horror",
+                Quantity = 31,
             },
             new Product
             {
